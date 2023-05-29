@@ -33,7 +33,7 @@ const MyCart = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               refetch();
-              Swal.fire('Deleted!', 'Your Cart has been deleted.', 'success');
+              Swal.fire('Deleted!', 'Your Item has been deleted.', 'success');
             }
           })
           .catch((error) => {

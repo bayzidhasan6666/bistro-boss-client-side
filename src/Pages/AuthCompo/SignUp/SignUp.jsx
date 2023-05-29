@@ -26,22 +26,35 @@ const SignUp = () => {
       .then((result) => {
         const createdUser = result.user;
         console.log(createdUser);
-        if (createdUser) {
-          toast.success('User Sign Up Successfully');
-          updateUserProfile(data.name, data.photoUrl) // Pass name and photoUrl to updateUserProfile
-            .then(() => {
-              toast.success('User profile updated successfully');
-              reset();
-              navigate('/');
+
+        updateUserProfile(data.name, data.photoUrl) // Pass name and photoUrl to updateUserProfile
+          .then(() => {
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              photoUrl: data.photoUrl,
+              
+            };
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(saveUser),
             })
-            .catch((error) => {
-              toast.error('Failed to update user profile');
-              console.log(error);
-            });
-        } else {
-          toast.error('User Sign Up Failed');
-          reset();
-        }
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  toast.success('User Sign Up Successfully');
+                }
+              });
+            reset();
+            navigate('/');
+          })
+          .catch((error) => {
+            toast.error('Failed to update user profile');
+            console.log(error);
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -51,7 +64,6 @@ const SignUp = () => {
         reset();
       });
   };
-
 
   return (
     <>
