@@ -33,7 +33,6 @@ const SignUp = () => {
               name: data.name,
               email: data.email,
               photoUrl: data.photoUrl,
-              
             };
             fetch('http://localhost:5000/users', {
               method: 'POST',
@@ -50,10 +49,6 @@ const SignUp = () => {
               });
             reset();
             navigate('/');
-          })
-          .catch((error) => {
-            toast.error('Failed to update user profile');
-            console.log(error);
           });
       })
       .catch((error) => {
