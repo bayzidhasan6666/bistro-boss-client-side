@@ -7,6 +7,8 @@ import Login from '../Pages/AuthCompo/Login/Login';
 import SignUp from '../Pages/AuthCompo/SignUp/SignUp';
 import PrivateRoute from './PrivateRoute';
 import Secret from '../Components/Secret';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import MyCart from '../Pages/Dashboard/MyCart/MyCart';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
             <Secret></Secret>
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'myCart',
+        element: <MyCart></MyCart>,
       },
     ],
   },

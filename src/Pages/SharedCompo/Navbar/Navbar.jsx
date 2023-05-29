@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import ActiveLink from '../../../Components/ActiveLink/ActiveLink';
 import { FaShoppingCart } from 'react-icons/fa';
+import useCart from '../../../hooks/useCart';
 const Navbar = () => {
   const { user, signOut } = useContext(AuthContext);
+  const [cart] = useCart();
   const handleSignOut = () => {
     signOut()
       .then(() => {})
@@ -70,10 +72,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link className="mr-3">
+          <Link to={'/dashboard/myCart'} className="mr-3">
             <div className="badge text-white bg-transparent border-none ">
               <FaShoppingCart className="w-8 h-5"></FaShoppingCart>
-              <span className='badge'>+0</span>
+              <span className="badge">+{cart?.length || 0}</span>
             </div>
           </Link>
           {user ? (
