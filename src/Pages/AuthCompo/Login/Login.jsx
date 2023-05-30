@@ -107,7 +107,7 @@ const Login = () => {
                 <input
                   disabled={disabled}
                   className={` ${
-                    disabled ? 'bg-[#d19f545f]' : 'bg-[#D1A054]'
+                    disabled ? 'bg-[#d19f545f]' : 'bg-teal-500'
                   } rounded font-semibold text-white py-2`}
                   type="submit"
                   value="Login"

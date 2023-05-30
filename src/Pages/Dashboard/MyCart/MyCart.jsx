@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import useCart from '../../../hooks/useCart';
 import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -54,11 +55,21 @@ const MyCart = () => {
       <Helmet>
         <title>My Cart | Bistro Boss</title>
       </Helmet>
+      <SectionTitle
+        subHeading={'---My Cart---'}
+        heading={'Wanna Add More?'}
+      ></SectionTitle>
+      <label
+        htmlFor="my-drawer-2"
+        className="btn border-none hover:bg-teal-600 bg-teal-500 text-black rounded-none mb-5  w-fit mx-auto flex drawer-button lg:hidden"
+      >
+        Open Menu
+      </label>
       <div className="max-w-2xl lg:max-w-5xl lg:ml-10 mx-auto bg-white p-5">
         <div className="flex justify-between font-semibold gap-10 text-2xl mb-5 items-center">
           <h1>Total Items: {cart.length}</h1>
           <h1>Total Price: ${total}</h1>
-          <button className="bg-[#D1A054] w-fit px-3 py-2 rounded">Pay</button>
+          <button className="bg-teal-500 w-fit px-3 py-2 rounded">Pay</button>
         </div>
         <div>
           <div className="overflow-x-auto w-full">

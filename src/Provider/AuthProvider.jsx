@@ -40,6 +40,10 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log('currentUser', currentUser);
+      // get and set token
+      fetch(``, {
+        method: '',
+      });
       setLoading(false);
     });
     return unsubscribe;

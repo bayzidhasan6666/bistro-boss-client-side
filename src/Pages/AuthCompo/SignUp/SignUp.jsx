@@ -253,7 +253,7 @@ const SignUp = () => {
               {/* --------------------password validation end---------------- */}
               <div className="form-control mt-6">
                 <input
-                  className={` bg-[#D1A054]
+                  className={` bg-teal-500
                  rounded font-semibold text-white py-2`}
                   type="submit"
                   value="Sign Up"
