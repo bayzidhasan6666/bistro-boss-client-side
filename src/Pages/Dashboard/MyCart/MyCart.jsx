@@ -61,7 +61,7 @@ const MyCart = () => {
       ></SectionTitle>
       <label
         htmlFor="my-drawer-2"
-        className="btn border-none hover:bg-teal-600 bg-teal-500 text-black rounded-none mb-5  w-fit mx-auto flex drawer-button lg:hidden"
+        className="btn border-none hover:bg-teal-600 bg-teal-500 text-white rounded-none mb-5  w-fit mx-auto flex drawer-button lg:hidden"
       >
         Open Menu
       </label>
@@ -69,7 +69,7 @@ const MyCart = () => {
         <div className="flex justify-between font-semibold gap-10 text-2xl mb-5 items-center">
           <h1>Total Items: {cart.length}</h1>
           <h1>Total Price: ${total}</h1>
-          <button className="bg-teal-500 w-fit px-3 py-2 rounded">Pay</button>
+          <button className="bg-teal-500 text-lg text-white hover:bg-teal-600 w-fit px-3 py-2 rounded">Pay</button>
         </div>
         <div>
           <div className="overflow-x-auto w-full">

@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
+import axios from 'axios';
 
 export const AuthContext = createContext(app);
 
@@ -36,20 +37,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      console.log('currentUser', currentUser);
-      // get and set token
-      fetch(``, {
-        method: '',
-      });
-      setLoading(false);
-    });
-    return unsubscribe;
-  }, []);
-
-  const handleSignOut = () => {
+  const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
@@ -61,6 +49,34 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log('currentUser', currentUser);
+
+      if (currentUser) {
+        axios
+          .post(`http://localhost:5000/jwt`, { email: currentUser.email })
+          .then((response) => {
+            const token = response.data.token;
+            console.log(token);
+            // Set token to local storage
+            localStorage.setItem('access-token', token);
+          })
+          .catch((error) => {
+            console.error('Error fetching JWT token:', error);
+          });
+      } else {
+        // Remove token from local storage
+        localStorage.removeItem('access-token');
+      }
+
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
   const authInfo = {
     user,
     loading,
@@ -68,7 +84,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     googleSignIn,
-    signOut: handleSignOut,
+    logOut,
     updateUserProfile,
   };
 

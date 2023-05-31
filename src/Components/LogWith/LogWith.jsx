@@ -25,8 +25,13 @@ const LogWith = () => {
         },
         body: JSON.stringify(saveUser),
       })
-        .then((res) => res.json())
-        .then((data) => {
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to save user.');
+          }
+          return res.json();
+        })
+        .then(() => {
           navigate(from, { replace: true });
         });
     });

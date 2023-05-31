@@ -21,7 +21,7 @@ const Testimonials = () => {
   return (
     <div className="my-20">
       <SectionTitle
-        subHeading={'What our client say'}
+        subHeading={'---What our client say---'}
         heading={'Testimonials'}
       ></SectionTitle>
       <div>

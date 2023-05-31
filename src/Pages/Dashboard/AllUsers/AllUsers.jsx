@@ -36,25 +36,25 @@ const AllUsers = () => {
         <title>All Users | Bistro Boss</title>
       </Helmet>
       <SectionTitle
-        subHeading={'---Hurry Up!---'}
+        subHeading={'---How many??---'}
         heading={'MANAGE ALL USERS'}
       ></SectionTitle>
       <label
         htmlFor="my-drawer-2"
-        className="btn border-none hover:bg-teal-600 bg-teal-500 text-black rounded-none mb-5  w-fit mx-auto flex drawer-button lg:hidden"
+        className="btn border-none hover:bg-teal-600 bg-teal-500 text-white rounded-none mb-5  w-fit mx-auto flex drawer-button lg:hidden"
       >
         Open Menu
       </label>
       <div>
-        <h1 className="font-serif text-xl">Total Users : {users.length}</h1>
+        <h1 className="font-serif text-xl font-semibold m-2">Total Users : {users.length}</h1>
       </div>
       {/* Table -------------- */}
       <div>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
             {/* head */}
-            <thead>
-              <tr>
+            <thead className=''>
+              <tr className=''>
                 <th>No</th>
                 <th>Photo</th>
                 <th>Name</th>

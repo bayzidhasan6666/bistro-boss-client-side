@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import ActiveLink from '../../../Components/ActiveLink/ActiveLink';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShopify, FaShoppingBag, FaShoppingBasket, FaShoppingCart, FaShopware } from 'react-icons/fa';
 import useCart from '../../../hooks/useCart';
 const Navbar = () => {
-  const { user, signOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
   const handleSignOut = () => {
-    signOut()
+    logOut()
       .then(() => {})
       .catch((error) => console.log(error));
   };
@@ -74,7 +74,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <Link to={'/dashboard/myCart'} className="mr-3">
             <div className="badge text-white bg-transparent border-none ">
-              <FaShoppingCart className="w-8 h-5"></FaShoppingCart>
+              <FaShoppingCart className="w-8 h-5 "></FaShoppingCart>
               <span className="badge">+{cart?.length || 0}</span>
             </div>
           </Link>

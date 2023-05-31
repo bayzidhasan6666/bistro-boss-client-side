@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import ActiveLink from '../../Components/ActiveLink/ActiveLink';
 import {
   FaBook,
@@ -18,14 +18,15 @@ import {
   FaWallet,
 } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
-import SectionTitle from '../../Components/SectionTitle/SectionTitle';
 import useCart from '../../hooks/useCart';
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
   const [cart] = useCart();
 
   // TODO :load data from the server to have dynamic isAdmin based on data
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <>
@@ -41,7 +42,16 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-teal-500 text-black">
+
+          <ul className="menu  p-4 w-80 bg-teal-500 text-white">
+              {' '}
+              <div className='my-5 ml-5'>
+                {' '}
+                <Link className="text-white font-serif uppercase text-lg">
+                  Bistro Boss
+                </Link>
+                <p className="uppercase text-sm font-serif">Restaurant</p>
+              </div>
             {isAdmin ? (
               <>
                 <li>
@@ -143,7 +153,7 @@ const Dashboard = () => {
                   <ActiveLink to={'/dashboard/myCart'}>
                     {' '}
                     <FaShoppingCart></FaShoppingCart>My Cart
-                    <span className="badge bg-white border-none text-yellow-600">
+                    <span className="badge bg-white border-none text-teal-500">
                       +{cart?.length || 0}
                     </span>
                   </ActiveLink>
