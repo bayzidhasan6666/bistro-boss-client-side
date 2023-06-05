@@ -3,13 +3,14 @@ import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import { FaTrash, FaUserShield } from 'react-icons/fa';
-import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const AllUsers = () => {
+  const [axiosSecure] = useAxiosSecure();
   const { data: users = [], refetch } = useQuery(['users'], async () => {
-    const res = await fetch(`http://localhost:5000/users`);
-    return res.json();
+    const res = await axiosSecure.get(`/users`);
+    return res.data;
   });
 
   const handleMakeAdmin = (user) => {
@@ -46,15 +47,17 @@ const AllUsers = () => {
         Open Menu
       </label>
       <div>
-        <h1 className="font-serif text-xl font-semibold m-2">Total Users : {users.length}</h1>
+        <h1 className="font-serif text-xl font-semibold m-2">
+          Total Users : {users.length}
+        </h1>
       </div>
       {/* Table -------------- */}
       <div>
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
             {/* head */}
-            <thead className=''>
-              <tr className=''>
+            <thead className="">
+              <tr className="">
                 <th>No</th>
                 <th>Photo</th>
                 <th>Name</th>

@@ -10,6 +10,10 @@ import Secret from '../Components/Secret';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import MyCart from '../Pages/Dashboard/MyCart/MyCart';
 import AllUsers from '../Pages/Dashboard/AllUsers/AllUsers';
+import AddItem from '../Pages/Dashboard/AddItem/AddItem';
+import AdminRoute from './AdminRoute';
+import ManageItems from '../Pages/Dashboard/ManageItems/ManageItems';
+import Payment from '../Pages/Dashboard/Payment/Payment';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -52,14 +56,42 @@ const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoute>
     ),
+
     children: [
       {
         path: 'myCart',
         element: <MyCart></MyCart>,
       },
       {
+        path: 'payment',
+        element: <Payment></Payment>,
+      },
+
+      // admin routes--------------
+
+      {
         path: 'allUsers',
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'addItem',
+        element: (
+          <AdminRoute>
+            <AddItem></AddItem>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'manageItems',
+        element: (
+          <AdminRoute>
+            <ManageItems></ManageItems>
+          </AdminRoute>
+        ),
       },
     ],
   },

@@ -17,7 +17,7 @@ export const AuthContext = createContext(app);
 const auth = getAuth();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
@@ -62,6 +62,7 @@ const AuthProvider = ({ children }) => {
             console.log(token);
             // Set token to local storage
             localStorage.setItem('access-token', token);
+            setLoading(false);
           })
           .catch((error) => {
             console.error('Error fetching JWT token:', error);
@@ -70,11 +71,11 @@ const AuthProvider = ({ children }) => {
         // Remove token from local storage
         localStorage.removeItem('access-token');
       }
-
-      setLoading(false);
     });
 
-    return unsubscribe;
+    return () => {
+      return unsubscribe();
+    };
   }, []);
 
   const authInfo = {
